@@ -45,6 +45,21 @@
             }
         });
     }
+    function chechValidity(){
+    	var pincode=document.getElementById("pincode").value;
+    	$.ajax({
+            url: 'checkPincodeValidity',
+            method: 'POST',
+            data: { pincode:pincode },
+            success: function(response) {
+                console.log("response of updateqty  "+response);
+                window.alert(response);
+            },
+            error: function(xhr, status, error) {
+                console.log('AJAX Error: ' + error);
+            }
+        });
+    }
     </script>
 </head>
 <body>
@@ -84,6 +99,10 @@
     </div>
     
     <div align="center" container mt-3">
+    <div id="checkpincode">
+    <input type="number" id="pincode" name="pincode">
+    <input type="button" onclick="chechValidity()" value="Check">
+    </div>
         <div id="cst">
             <p align="center">Total Cost=<%=request.getAttribute("cartcost") %></p>
         </div>
